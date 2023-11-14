@@ -1,6 +1,6 @@
 tinymce.PluginManager.add('kityformula-editor', function(editor, url) {
-    const url = 'https://husky-yellow.github.io/onion-tinymce-edit'
-    var baseURL = url + '/tinymce/plugins/kityformula-editor/kityFormula.html';
+    const cdnUrl = 'https://husky-yellow.github.io/onion-tinymce-edit'
+    var baseURL = cdnUrl + '/tinymce/plugins/kityformula-editor/kityFormula.html';
 
     editor.on('dblclick',function(){
         var sel=editor.selection.getContent();
