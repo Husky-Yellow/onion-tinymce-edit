@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      - name: Build
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
+        run: |
+          pnpm install --no-frozen-lockfile
+          pnpm build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          deploy_key: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: dist
