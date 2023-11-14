@@ -51,7 +51,7 @@
           ], //工具栏配置，设为false则隐藏
           // menubar: "file edit my1", //菜单栏配置，设为false则隐藏，不配置则默认显示全部菜单，也可自定义配置--查看 http://tinymce.ax-z.cn/configure/editor-appearance.php --搜索“自定义菜单”
           external_plugins: {
-            'kityformula-editor': '/tinymce/plugins/kityformula-editor/plugin.min.js'
+            'kityformula-editor': '/src/assets/tinymce/plugins/kityformula-editor/plugin.min.js'
           },
           extended_valid_elements: 'dot[key|value]',
           setup: function (editor) {
