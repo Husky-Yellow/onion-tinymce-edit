@@ -1,18 +1,102 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta httpequiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta httpequiv="Pragma" content="no-store">
-    <meta httpequiv="Expires" content="0">
-    <title>Vite + Vue</title>
-    <script type="module" crossorigin src="./assets/index-a71b34a7.js"></script>
-    <link rel="stylesheet" href="./assets/index-bac96350.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    
-  </body>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta httpequiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta httpequiv="Pragma" content="no-store">
+  <meta httpequiv="Expires" content="0">
+  <title>Vite + Vue</title>
+  <script>
+    function generateScriptTag(url) {
+      const script = document.createElement('script');
+      script.src = url;
+      script.async = false;
+      const body = document.body;
+      if (body) {
+        body.appendChild(script);
+      } else {
+        console.error('Body element not found');
+      }
+    }
+
+    function generateLinkTag(url) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+
+    const cdns = [
+      {
+        name: 'React',
+        url: '//fp.yangcong345.com/middle/umd/16.12.0/react.min.js'
+      },
+      {
+        name: 'ReactDOM',
+        url: '//fp.yangcong345.com/middle/umd/16.12.0/react-dom.min.js'
+      },
+      {
+        name: 'onionUtils',
+        url: '//fp.yangcong345.com/middle/2.7.6/onion-utils.min.js'
+      },
+      {
+        name: 'jquery',
+        url: `https://husky-yellow.github.io/onion-tinymce-edit/tinymce/plugins/kityformula-editor/kityformula/js/jquery-3.6.0.min.js`,
+      },
+      {
+        name: 'MathQuill',
+        url: `//fp.yangcong345.com/middle/mathquill/mathquill.css`,
+      },
+      {
+        name: 'MathQuill',
+        url: `//fp.yangcong345.com/middle/0.10.1/mathquill.js`,
+      },
+      {
+        name: 'OnionWebTrack',
+        url: "//fp.yangcong345.com/web-track-1.1.1/webTrack.js"
+      },
+      {
+        name: 'ProblemCore',
+        url: "//fp.yangcong345.com/problem-core-3.3.6-beta.1/problem-core.umd.prod.js"
+      },
+      {
+        name: 'classNames',
+        url: '//fp.yangcong345.com/middle/classnames-2.2.6/index.js'
+      },
+      {
+        name: 'ProblemKeyBoard',
+        url: `//fp.yangcong345.com/problem-keyboard-1.0.43/softKeyBoard.css`,
+      },
+      {
+        name: 'ProblemKeyBoard',
+        url: `//fp.yangcong345.com/problem-keyboard-1.0.44/softKeyBoard.js`,
+      },
+    ]
+
+    window.onload = function () {
+      cdns.forEach(item => {
+        if (item.url.endsWith('.js')) {
+          console.log(item.url);
+          generateScriptTag(item.url);
+        } else if (item.url.endsWith('.css')) {
+          console.log(item.url);
+          generateLinkTag(item.url);
+        }
+      });
+    }
+
+  </script>
+  <script type="module" crossorigin src="./assets/index-297d07c2.js"></script>
+  <link rel="stylesheet" href="./assets/index-c23146cd.css">
+</head>
+
+<body>
+  <div id="app"></div>
+  
+</body>
+
 </html>
