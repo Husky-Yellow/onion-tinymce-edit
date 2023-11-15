@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+import 'katex/dist/katex.css'
 import Tinymce from "./components/Tinymce.vue";
 import PreviewIframe from './components/PreviewIframe.vue'
 import { ref, computed } from 'vue';
@@ -43,10 +44,12 @@ const submit = () => {
 
 .left-column {
   padding: 10px; /* 可选的内边距 */
+  min-width: 600px;
 }
 
 .right-column {
   padding: 10px; /* 可选的内边距 */
+  min-width: 500px;
 }
 
 </style>

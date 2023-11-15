@@ -1,6 +1,11 @@
 import katex from 'katex'
 import html2canvas from 'html2canvas'
 
+/**
+ * 字符串转换成图片
+ * @param {string} body
+ * @returns {string} img
+ */
 export const processLatexInBody = async (body) => {
   const matches = body.match(/\$([^$]+)\$/g);
   if (matches) {
@@ -29,21 +34,28 @@ export const convertDomToBase64 = async (domElement) => {
     return null;
   }
 };
+
 /**
  * 公式转换成图片
  * @param {*} latex
  * @return base64 图片url
  */
 export const formConvertLatexToImage = async (latex) => {
-    const html = katex.renderToString('+', { displayMode: false });
-    const div = document.createElement('div');
-    div.style.position = 'fixed';
-    div.style.top = '-9999px';
-    div.innerHTML = html;
-    document.body.appendChild(div);
-    const saveUrl = await convertDomToBase64(div)
-    document.body.removeChild(div);
-    return saveUrl;
+  const existingDiv = document.getElementById('latexImageDiv');
+  if (existingDiv) {
+      existingDiv.innerHTML = ''; // 清空现有的 div 元素内容
+  } else {
+      const div = document.createElement('div');
+      div.id = 'latexImageDiv';
+      document.body.appendChild(div);
+  }
+  const html = katex.renderToString(latex, { displayMode: false, output: 'html' });
+  const div = document.getElementById('latexImageDiv');
+  div.style.position = 'fixed';
+  div.style.top = '-9999px';
+  div.innerHTML = html
+  const saveUrl = await convertDomToBase64(div);
+  return saveUrl;
 }
 
 /**
